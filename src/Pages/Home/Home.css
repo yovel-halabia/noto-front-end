@@ -1,0 +1,9 @@
+.home__categories-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.home__categories-container img{
+    width: 100%;
+}
