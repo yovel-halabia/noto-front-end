@@ -35,7 +35,9 @@ const variants = {
 };
 
 export default function Home({ prevPath }) {
-	const { data } = useGetProductQuery("get-sales-product");
+	const { data: salesProducts } = useGetProductQuery("get-sales-product");
+	const { data: menProducts } = useGetProductQuery("get-category-products/men");
+	const { data: womenProducts } = useGetProductQuery("get-category-products/women");
 	const { pathname } = useLocation();
 
 	return (
@@ -71,7 +73,9 @@ export default function Home({ prevPath }) {
 						</div>
 					</Link>
 				</div>
-				{data && <Carousel title="Sales" slides={data[0]?.products} />}
+				{salesProducts && <Carousel title="Sales" slides={salesProducts[0]?.products} />}
+				{menProducts && <Carousel title="For Men" slides={menProducts?.slice(0, 5)} />}
+				{womenProducts && <Carousel title="For Women" slides={womenProducts.slice(0, 5)} />}
 			</div>
 		</motion.div>
 	);
