@@ -54,3 +54,27 @@
     align-items: center;
     position: relative;
 }
+
+.Header__counter{
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.Header__wishlist-counter{
+    right: -5px;
+}
+
+.Header__cart-counter{
+    right: -10px;
+}

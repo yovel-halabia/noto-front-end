@@ -26,8 +26,8 @@ function App() {
 		<div className="App">
 			<Header />
 			<Nav />
-			{isMobile && <BottomNav />}
 			<Router />
+			{isMobile && <BottomNav />}
 		</div>
 	);
 }
