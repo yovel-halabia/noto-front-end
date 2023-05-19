@@ -19,9 +19,22 @@ export default function Orders() {
 		<div className="orders page">
 			<h1 className="orders__title">Orders</h1>
 			<div className="orders__container">
-				{data?.orders?.map((item, i) => (
-					<Order key={i} order={item} closeExtand={closeAllExtend} ref={(el) => (ordersRef.current[i] = el)} />
-				))}
+				{data?.orders.length ? (
+					<>
+						{data?.orders?.map((item, i) => (
+							<Order
+								key={i}
+								order={item}
+								closeExtand={closeAllExtend}
+								ref={(el) => (ordersRef.current[i] = el)}
+							/>
+						))}{" "}
+					</>
+				) : (
+					<div className="orders__no-orders">
+						<h2>NO ORDERS</h2>
+					</div>
+				)}
 			</div>
 		</div>
 	);

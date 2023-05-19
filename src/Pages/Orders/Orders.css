@@ -3,3 +3,10 @@
     row-gap: 20px;
     flex-wrap: wrap;
 }
+
+.orders__no-orders{
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
+}
+
