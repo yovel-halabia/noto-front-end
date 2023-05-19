@@ -1,29 +1,78 @@
 import React from "react";
 import "./Home.css";
 
-import {Link} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-import {useGetProductQuery} from "../../Redux/Services/productApi";
+import { useGetProductQuery } from "../../Redux/Services/productApi";
+import { motion } from "framer-motion";
 
 import Carousel from "./Carousel";
 
-export default function Home() {
-	const {data} = useGetProductQuery("get-sales-product");
+const variants = {
+	enter: (location) => {
+		let direction;
+		if (location.prevPath.indexOf("women") > -1) direction = "-100%";
+		else if (location.prevPath.indexOf("men") > -1) direction = "100%";
+		else if (location.currentPath.indexOf("women") > -1) direction = "-100%";
+		else if (location.currentPath.indexOf("men") > -1) direction = "-100%";
+
+		return {
+			left: direction,
+		};
+	},
+	center: { left: 0 },
+	exit: (location) => {
+		let direction;
+		if (location.prevPath.indexOf("women") > -1) direction = "-100%";
+		else if (location.prevPath.indexOf("men") > -1) direction = "-100%";
+		else if (location.currentPath.indexOf("women") > -1) direction = "-100%";
+		else if (location.currentPath.indexOf("men") > -1) direction = "100%";
+
+		return {
+			left: direction,
+		};
+	},
+};
+
+export default function Home({ prevPath }) {
+	const { data } = useGetProductQuery("get-sales-product");
+	const { pathname } = useLocation();
 
 	return (
-		<div className="home page">
-			<div className="home__categories-container">
-				<Link to="category/women">
-					<img src="https://emac.co.tz/wp-content/uploads/2014/01/womens-category.jpg" alt="womens category" />
-				</Link>
-				<Link to="category/men">
-					<img
-						src="https://i0.wp.com/www.hospiceofmiamicounty.org/wp-content/uploads/2014/01/mens-category.jpg?fit=500%2C400&ssl=1"
-						alt="mens category"
-					/>
-				</Link>
+		<motion.div
+			style={{ width: "100%", position: "absolute", height: "100vh" }}
+			variants={
+				(pathname.indexOf("category") > -1 || pathname === "/") &&
+				(prevPath.indexOf("category") > -1 || prevPath === "/")
+					? variants
+					: {}
+			}
+			initial="enter"
+			animate="center"
+			exit="exit"
+			transition={{ type: "spring", stiffness: 50 }}
+			custom={{ currentPath: pathname, prevPath: prevPath }}>
+			<div className="home page">
+				<div className="home__categories-container">
+					<Link to="category/men">
+						<div>
+							<h2>Men</h2>
+							<div className="home__arrow home__arrow-left">
+								<div></div>
+							</div>
+						</div>
+					</Link>
+					<Link to="category/women">
+						<div>
+							<h2>Woman</h2>
+							<div className="home__arrow home__arrow-right">
+								<div></div>
+							</div>
+						</div>
+					</Link>
+				</div>
+				{data && <Carousel title="Sales" slides={data[0]?.products} />}
 			</div>
-			{data && <Carousel title="Sales" slides={data[0]?.products} />}
-		</div>
+		</motion.div>
 	);
 }

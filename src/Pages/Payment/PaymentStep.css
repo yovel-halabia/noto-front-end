@@ -1,0 +1,23 @@
+.payment-step{
+    width: 100%;
+}
+
+.payment-step__inner{
+    padding: 0 40px;
+}
+
+.payment-step__inner h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.payment-step__inner .primary-button {
+    width: 20%;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .payment-step__inner .primary-button {
+        width: 100%;
+    }
+}

@@ -19,15 +19,15 @@ export default function Nav() {
 		womenRef.current.style.color = "#B7B7B8";
 		contactUsRef.current.style.color = "#B7B7B8";
 		switch (location.pathname) {
-			case "/":
-				dotRef.current.style.display = "flex";
-				dotRef.current.style.left = "7%";
-				homeRef.current.style.color = "#111";
-				break;
 			case "/category/men":
 				dotRef.current.style.display = "flex";
-				dotRef.current.style.left = "27%";
+				dotRef.current.style.left = "5%";
 				menRef.current.style.color = "#111";
+				break;
+			case "/":
+				dotRef.current.style.display = "flex";
+				dotRef.current.style.left = "25%";
+				homeRef.current.style.color = "#111";
 				break;
 			case "/category/women":
 				dotRef.current.style.left = "50%";
@@ -49,13 +49,13 @@ export default function Nav() {
 			<nav className="nav__nav">
 				<ul>
 					<li>
-						<Link ref={homeRef} to="/">
-							Home
+						<Link ref={menRef} to="/category/men">
+							Men
 						</Link>
 					</li>
 					<li>
-						<Link ref={menRef} to="/category/men">
-							Men
+						<Link ref={homeRef} to="/">
+							Home
 						</Link>
 					</li>
 					<li>
