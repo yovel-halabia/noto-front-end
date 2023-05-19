@@ -1,13 +1,11 @@
 import {useRef, useState, useEffect} from "react";
 import "./Carousel.css";
-import {useSelector} from "react-redux";
 import CarouselSlide from "./CarouselSlide";
 
-import {ReactComponent as ArrowLeftIcon} from "../../Assets/icons/arrow_left_icon.svg";
-import {ReactComponent as ArrowRightIcon} from "../../Assets/icons/arrow_right_icon.svg";
+import { ReactComponent as ArrowLeftIcon } from "../../Assets/icons/arrow_left_icon.svg";
+import { ReactComponent as ArrowRightIcon } from "../../Assets/icons/arrow_right_icon.svg";
 
-export default function Carousel({title, slides}) {
-	const StyleState = useSelector((state) => state.style);
+export default function Carousel({ title, slides }) {
 	const sliderRef = useRef(null);
 	const containerRef = useRef(null);
 	const intervalRef = useRef(null);
@@ -18,7 +16,7 @@ export default function Carousel({title, slides}) {
 	useEffect(() => {
 		const handleSize = () => {
 			if (containerRef?.current?.offsetWidth) {
-				var numSlides = StyleState.isMobile ? (numSlides = 1) : (numSlides = 3);
+				var numSlides = window.innerWidth < 768 ? 1 : 3;
 				var margin = 20;
 				var width = (containerRef.current.offsetWidth - margin * (numSlides - 1)) / numSlides;
 				var myTranslate = width + margin;
