@@ -24,11 +24,11 @@ export default function BottomNav() {
 				<Orders_icon />
 			</Link>
 			<div className="bottom-nav__button-container">
-				{data?.cartItems?.items?.length !== 0 && (
+				{data?.cartItems?.items?.length ? (
 					<div className="bottom-nav__counter bottom-nav__cart-counter">
 						<span>{data?.cartItems?.items?.length}</span>
 					</div>
-				)}
+				) : null}
 				<button
 					onClick={() => {
 						dispatch(changeCartDisplay(!styleState.cart.isOpen));
@@ -38,11 +38,11 @@ export default function BottomNav() {
 				{styleState.cart.isOpen && <Cart />}
 			</div>
 			<div className="bottom-nav__button-container">
-				{data?.wishlistItems?.length && (
+				{data?.wishlistItems?.length ? (
 					<div className="bottom-nav__counter bottom-nav__wishlist-counter">
 						<span>{data?.wishlistItems?.length}</span>
 					</div>
-				)}
+				) : null}
 				<button
 					onClick={() => {
 						dispatch(changeWishlistDisplay(!styleState.wishlist.isOpen));

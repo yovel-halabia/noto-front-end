@@ -49,11 +49,11 @@ export default function Header() {
 							<Orders_icon />
 						</Link>
 						<div className="Header__button-container">
-							{data?.cartItems?.items?.length !== 0 && (
+							{data?.cartItems?.items?.length ? (
 								<div className="Header__counter Header__cart-counter">
 									<span>{data?.cartItems?.items?.length}</span>
 								</div>
-							)}
+							) : null}
 							<button
 								onClick={() => {
 									dispatch(changeCartDisplay(!styleState.cart.isOpen));
@@ -63,11 +63,11 @@ export default function Header() {
 							{styleState.cart.isOpen && <Cart ref={cartRef} />}
 						</div>
 						<div className="Header__button-container">
-							{data?.wishlistItems?.length && (
+							{data?.wishlistItems?.length ? (
 								<div className="Header__counter Header__wishlist-counter">
 									<span>{data?.wishlistItems?.length}</span>
 								</div>
-							)}
+							) : null}
 							<button
 								onClick={() => {
 									dispatch(changeWishlistDisplay(!styleState.wishlist.isOpen));
