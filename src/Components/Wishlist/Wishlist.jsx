@@ -1,19 +1,20 @@
 import {useImperativeHandle, useRef, forwardRef} from "react";
 import "./Wishlist.css";
 
-import {useSelector, useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {changeWishlistDisplay} from "../../Redux/Reducers/styleSlice";
 import {userApi} from "../../Redux/Services/userApi";
 
+import useIsMobile from "../../Hooks/useIsMobile";
 import WishlistItem from "./WishlistItem";
 
-import {ReactComponent as BackIcon} from "../../Assets/icons/back_icon.svg";
+import { ReactComponent as BackIcon } from "../../Assets/icons/back_icon.svg";
 
 export default forwardRef(function Wishlist(props, ref) {
 	const wishlistRef = useRef(null);
 	const dispatch = useDispatch();
-	const styleState = useSelector((state) => state.style);
-	const {data} = userApi.endpoints.getUser.useQueryState();
+	const isMobile = useIsMobile();
+	const { data } = userApi.endpoints.getUser.useQueryState();
 
 	useImperativeHandle(ref, () => ({
 		handleClickOutSide: (e) => {
@@ -24,8 +25,10 @@ export default forwardRef(function Wishlist(props, ref) {
 
 	return (
 		<div className="wishlist" ref={wishlistRef}>
-			{styleState.isMobile && (
-				<button className="wishlist__back-button" onClick={() => dispatch(changeWishlistDisplay(false))}>
+			{isMobile && (
+				<button
+					className="wishlist__back-button"
+					onClick={() => dispatch(changeWishlistDisplay(false))}>
 					<BackIcon />
 				</button>
 			)}

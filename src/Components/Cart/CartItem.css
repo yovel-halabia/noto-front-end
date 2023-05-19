@@ -5,6 +5,10 @@
     padding:10px 30px;
 }
 
+.cart .cart-item{
+    margin: auto;
+}
+
 .cart-item__line{
     display: flex;
     flex: 1 2 0px;
