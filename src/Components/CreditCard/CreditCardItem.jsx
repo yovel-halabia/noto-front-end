@@ -40,10 +40,11 @@ export default function CreditCardItem({item, showErr}) {
 	};
 
 	return (
-		<div className={item.default ? "credit-card-item credit-card-item__selected" : "credit-card-item"}>
+		<div
+			className={item.default ? "credit-card-item credit-card-item__selected" : "credit-card-item"}>
 			<div className="credit-card-item__line">
-				{item.company == "musterCard" && <img src={musterCard} />}
-				{item.company == "visa" && <img src={visa} />}
+				{item.company === "musterCard" && <img src={musterCard} />}
+				{item.company === "visa" && <img src={visa} />}
 				{!item.default && (
 					<button
 						onClick={() => {

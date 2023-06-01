@@ -6,9 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeCartDisplay, changeWishlistDisplay} from "../../Redux/Reducers/styleSlice";
 import { userApi } from "../../Redux/Services/userApi";
 
-import { ReactComponent as Orders_icon } from "../../Assets/icons/orders_icon.svg";
-import { ReactComponent as Cart_icon } from "../../Assets/icons/cart_icon.svg";
-import { ReactComponent as Whishlist_icon } from "../../Assets/icons/wishlist_icon.svg";
+import { ReactComponent as OrdersIcon } from "../../Assets/icons/orders_icon.svg";
+import { ReactComponent as CartIcon } from "../../Assets/icons/cart_icon.svg";
+import { ReactComponent as WishListIcon } from "../../Assets/icons/wishlist_icon.svg";
 
 import Cart from "../Cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
@@ -21,7 +21,7 @@ export default function BottomNav() {
 	return (
 		<div className="bottom-nav">
 			<Link to="/orders">
-				<Orders_icon />
+				<OrdersIcon />
 			</Link>
 			<div className="bottom-nav__button-container">
 				{data?.cartItems?.items?.length ? (
@@ -33,7 +33,7 @@ export default function BottomNav() {
 					onClick={() => {
 						dispatch(changeCartDisplay(!styleState.cart.isOpen));
 					}}>
-					<Cart_icon />
+					<CartIcon />
 				</button>
 				{styleState.cart.isOpen && <Cart />}
 			</div>
@@ -47,7 +47,7 @@ export default function BottomNav() {
 					onClick={() => {
 						dispatch(changeWishlistDisplay(!styleState.wishlist.isOpen));
 					}}>
-					<Whishlist_icon />
+					<WishListIcon />
 				</button>
 				{styleState.wishlist.isOpen && <Wishlist />}
 			</div>

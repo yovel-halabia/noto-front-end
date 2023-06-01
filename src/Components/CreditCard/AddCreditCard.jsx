@@ -44,9 +44,9 @@ export default function AddCreditCard({showErr}) {
 		for (let i = 0, len = match.length; i < len; i += 4) {
 			parts.push(match.substring(i, i + 4));
 		}
-		parts[0] == "4580"
-			? inputDispatch({type: "updateState", payload: {company: "visa"}})
-			: inputDispatch({type: "updateState", payload: {company: ""}});
+		parts[0] === "4580"
+			? inputDispatch({ type: "updateState", payload: { company: "visa" } })
+			: inputDispatch({ type: "updateState", payload: { company: "" } });
 
 		parts.length > 0
 			? inputDispatch({type: "updateState", payload: {number: parts.join(" ")}})

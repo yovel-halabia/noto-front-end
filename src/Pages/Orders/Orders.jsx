@@ -1,14 +1,14 @@
-import {useRef, useEffect} from "react";
+import { useRef } from "react";
 import "./Orders.css";
 
-import {userApi} from "../../Redux/Services/userApi";
+import { userApi } from "../../Redux/Services/userApi";
 
 import useCheckToken from "../../Hooks/useCheckToken";
 
 import Order from "./Order";
 
 export default function Orders() {
-	const {data} = userApi.endpoints.getUser.useQueryState();
+	const { data } = userApi.endpoints.getUser.useQueryState();
 	const ordersRef = useRef([]);
 	useCheckToken();
 

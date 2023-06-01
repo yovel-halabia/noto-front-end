@@ -50,26 +50,35 @@ function ContactUsCard({id, title, description, buttonText, openCard, closeCards
 		else {
 			inputDispatch({type: "hideErrors"});
 			if (
-				inputState.fullNameInput.val == "" ||
+				inputState.fullNameInput.val === "" ||
 				inputState.emailInput.val.match(
 					/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-				) == null ||
-				inputState.descriptionInput.val == ""
+				) === null ||
+				inputState.descriptionInput.val === ""
 			) {
-				if (inputState.fullNameInput.val == "")
-					inputDispatch({type: "updateState", payload: {fullNameInput: {...inputState.fullNameInput, trhowErr: true}}});
+				if (inputState.fullNameInput.val === "")
+					inputDispatch({
+						type: "updateState",
+						payload: { fullNameInput: { ...inputState.fullNameInput, trhowErr: true } },
+					});
 				if (
 					inputState.emailInput.val.match(
 						/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-					) == null
+					) === null
 				)
-					inputDispatch({type: "updateState", payload: {emailInput: {...inputState.emailInput, trhowErr: true}}});
-				if (inputState.descriptionInput.val == "")
-					inputDispatch({type: "updateState", payload: {descriptionInput: {...inputState.descriptionInput, trhowErr: true}}});
+					inputDispatch({
+						type: "updateState",
+						payload: { emailInput: { ...inputState.emailInput, trhowErr: true } },
+					});
+				if (inputState.descriptionInput.val === "")
+					inputDispatch({
+						type: "updateState",
+						payload: { descriptionInput: { ...inputState.descriptionInput, trhowErr: true } },
+					});
 			} else {
 				setSuccess(true);
 				setTimeout(() => {
-					inputDispatch({type: "initState"});
+					inputDispatch({ type: "initState" });
 					setSuccess(false);
 					cardRef.current.classList.remove("contact-us-card__extend");
 					setIsExtend(false);

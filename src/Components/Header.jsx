@@ -6,10 +6,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeCartDisplay, changeWishlistDisplay} from "../Redux/Reducers/styleSlice";
 import {userApi} from "../Redux/Services/userApi";
 
-import {ReactComponent as Orders_icon} from "../Assets/icons/orders_icon.svg";
-import {ReactComponent as Cart_icon} from "../Assets/icons/cart_icon.svg";
-import {ReactComponent as Whishlist_icon} from "../Assets/icons/wishlist_icon.svg";
-import {ReactComponent as Avatar_icon} from "../Assets/icons/avatar_icon.svg";
+import { ReactComponent as OrdersIcon } from "../Assets/icons/orders_icon.svg";
+import { ReactComponent as CartIconm } from "../Assets/icons/cart_icon.svg";
+import { ReactComponent as WishListIcon } from "../Assets/icons/wishlist_icon.svg";
+import { ReactComponent as AvatarIcon } from "../Assets/icons/avatar_icon.svg";
 
 import useIsMobile from "../Hooks/useIsMobile";
 
@@ -46,7 +46,7 @@ export default function Header() {
 				{!isMobile && (
 					<>
 						<Link to="/orders" className="Header__button-container">
-							<Orders_icon />
+							<OrdersIcon />
 						</Link>
 						<div className="Header__button-container">
 							{data?.cartItems?.items?.length ? (
@@ -58,7 +58,7 @@ export default function Header() {
 								onClick={() => {
 									dispatch(changeCartDisplay(!styleState.cart.isOpen));
 								}}>
-								<Cart_icon />
+								<CartIconm />
 							</button>
 							{styleState.cart.isOpen && <Cart ref={cartRef} />}
 						</div>
@@ -72,7 +72,7 @@ export default function Header() {
 								onClick={() => {
 									dispatch(changeWishlistDisplay(!styleState.wishlist.isOpen));
 								}}>
-								<Whishlist_icon />
+								<WishListIcon />
 							</button>
 							{styleState.wishlist.isOpen && <Wishlist ref={wishlistRef} />}
 						</div>
@@ -82,7 +82,7 @@ export default function Header() {
 				<Link to={data ? "/setting" : "/login"}>
 					<div className="Header__setting-container">
 						<div className="Header__setting">
-							<Avatar_icon />
+							<AvatarIcon />
 						</div>
 					</div>
 				</Link>
