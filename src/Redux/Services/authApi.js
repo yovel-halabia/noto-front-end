@@ -1,32 +1,28 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {userApi} from "./userApi";
-import {getCookie, setCookie} from "../../Util/cookies";
+import {setCookie} from "../../Util/cookies";
 
 export const authApi = createApi({
 	reducerPath: "authApi",
-	baseQuery: fetchBaseQuery({baseUrl: "/api/"}),
+	baseQuery: fetchBaseQuery({baseUrl: "/api/auth/"}),
 	endpoints: (builder) => ({
-		checkToken: builder.query({
-			query: () => ({
-				url: "check-token",
-				method: "GET",
-				headers: {authorization: `Bearer ${getCookie("accessToken")}`},
-			}),
-		}),
-		authUser: builder.mutation({
+		auth: builder.mutation({
 			query: (params) => ({
 				url: params.url,
 				method: "POST",
-				body: params.body,
+				body: params.data,
 			}),
-			async onQueryStarted(undefined, {dispatch, queryFulfilled}) {
-				const {data} = await queryFulfilled;
-				setCookie("accessToken", data.updatedData.accessToken);
-				const getUser = dispatch(userApi.endpoints.getUser.initiate());
-				getUser.refetch();
+			async onQueryStarted({}, {dispatch, queryFulfilled}) {
+				const {
+					data: {data},
+				} = await queryFulfilled;
+				if (data) {
+					setCookie("accessToken", data);
+					dispatch(userApi.endpoints.getUser.initiate()).refetch();
+				}
 			},
 		}),
 	}),
 });
 
-export const {useAuthUserMutation, useCheckTokenQuery} = authApi;
+export const {useAuthMutation} = authApi;

@@ -1,39 +1,36 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import "./Input.css";
 
-import {ReactComponent as ErrIcon} from "../Assets/icons/err_icon.svg";
+import { ReactComponent as ErrIcon } from "../../Assets/icons/err_icon.svg";
 
-export default function Input({type, placeholder, errMsg, throwErr, onChange, value, autocomplete}) {
+export default function Input({ type, placeholder, register, name, options, err, autocomplete }) {
 	const [isFocused, setIsfocused] = useState(false);
 	const [className, setClassName] = useState("");
 
 	useEffect(() => {
 		if (isFocused) setClassName("input__input-wrapper input__input-focus");
-		else if (throwErr) setClassName("input__input-wrapper input__input-err");
+		//else if (throwErr) setClassName("input__input-wrapper input__input-err");
 		else setClassName("input__input-wrapper");
-	}, [throwErr, isFocused]);
+	}, [isFocused]);
 
 	return (
 		<div className="input">
 			<div className={className}>
 				<input
+					{...register(name, options)}
 					type={type}
 					placeholder={placeholder}
 					onFocus={() => setIsfocused(true)}
 					onBlur={() => setIsfocused(false)}
-					onChange={(e) => {
-						onChange && onChange(e);
-					}}
-					value={value && value}
 					autoComplete={autocomplete}
 				/>
-				{throwErr && (
+				{err && (
 					<div className="input__err-icon">
 						<ErrIcon />
 					</div>
 				)}
 			</div>
-			{throwErr && <span className="input__err-msg">{errMsg}</span>}
+			{err && <span className="input__err-msg">{err}</span>}
 		</div>
 	);
 }

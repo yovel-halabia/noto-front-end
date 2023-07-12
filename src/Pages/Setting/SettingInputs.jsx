@@ -6,7 +6,7 @@ import {userApi, useUpdateUserMutation} from "../../Redux/Services/userApi";
 
 import {ReactComponent as EyeIcon} from "../../Assets/icons/eye_icon.svg";
 
-import Input from "../../Components/Input";
+import Input from "../../Components/Form/Input";
 import ErrAlert from "../../Components/ErrAlert";
 import SuccessAlert from "../../Components/SuccessAlert";
 

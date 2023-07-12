@@ -1,6 +1,0 @@
-{
-    "prettier.jsxBracketSameLine": true,
-    "prettier.endOfLine": "lf",
-    "prettier.bracketSpacing": true,
-    "prettier.printWidth": 100
-}

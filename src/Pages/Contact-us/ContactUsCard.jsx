@@ -1,34 +1,34 @@
 import {useState, useReducer, useRef, useImperativeHandle, forwardRef} from "react";
 import "./ContactUsCard.css";
 import {ReactComponent as Close_icon} from "../../Assets/icons/close_icon.svg";
-import Input from "../../Components/Input";
+import Input from "../../Components/Form/Input";
 import SuccessAlert from "../../Components/SuccessAlert";
 
 const initialState = {
-	fullNameInput: {val: "", errText: "", trhowErr: false},
-	emailInput: {val: "", errText: "", trhowErr: false},
-	descriptionInput: {val: "", errText: "", trhowErr: false},
+	fullNameInput: { val: "", errText: "", trhowErr: false },
+	emailInput: { val: "", errText: "", trhowErr: false },
+	descriptionInput: { val: "", errText: "", trhowErr: false },
 };
 
 const reducer = (state, action) => {
 	switch (action.type) {
 		case "updateState":
-			return {...state, ...action.payload};
+			return { ...state, ...action.payload };
 		case "initState":
 			return initialState;
 		case "hideErrors":
 			return {
 				...state,
-				fullNameInput: {...state.fullNameInput, trhowErr: false},
-				emailInput: {...state.emailInput, trhowErr: false},
-				descriptionInput: {...state.descriptionInput, trhowErr: false},
+				fullNameInput: { ...state.fullNameInput, trhowErr: false },
+				emailInput: { ...state.emailInput, trhowErr: false },
+				descriptionInput: { ...state.descriptionInput, trhowErr: false },
 			};
 		default:
 			console.error("error in contant-us inputs reducer");
 	}
 };
 
-function ContactUsCard({id, title, description, buttonText, openCard, closeCards, position}, ref) {
+function ContactUsCard({ id, title, description, buttonText, openCard, closeCards, position }, ref) {
 	const cardRef = useRef(null);
 	const [isExtend, setIsExtend] = useState(false);
 	const [success, setSuccess] = useState(null);
@@ -48,7 +48,7 @@ function ContactUsCard({id, title, description, buttonText, openCard, closeCards
 	const handleSend = () => {
 		if (!isExtend) openCard(id);
 		else {
-			inputDispatch({type: "hideErrors"});
+			inputDispatch({ type: "hideErrors" });
 			if (
 				inputState.fullNameInput.val === "" ||
 				inputState.emailInput.val.match(
@@ -97,32 +97,33 @@ function ContactUsCard({id, title, description, buttonText, openCard, closeCards
 			<h2 className="contact-us-card__title">{title}</h2>
 			<h4 className="contact-us-card__description">{description}</h4>
 			{isExtend && (
-				<div className="contact-us-card__inputs-wrapper">
-					<Input
-						type="text"
-						placeholder="Full Name"
-						value={inputState.fullNameInput.val}
-						onChange={(e) => inputDispatch({type: "updateState", payload: {fullNameInput: {...inputState.fullNameInput, val: e.target.value}}})}
-						errMsg="Invalid input"
-						throwErr={inputState.fullNameInput.trhowErr}
-					/>
-					<Input
-						type="email"
-						placeholder="Email"
-						value={inputState.emailInput.val}
-						onChange={(e) => inputDispatch({type: "updateState", payload: {emailInput: {...inputState.emailInput, val: e.target.value}}})}
-						errMsg="Invalid Email"
-						throwErr={inputState.emailInput.trhowErr}
-					/>
-					<Input
-						type="text"
-						placeholder="Description"
-						value={inputState.descriptionInput.val}
-						onChange={(e) => inputDispatch({type: "updateState", payload: {descriptionInput: {...inputState.descriptionInput, val: e.target.value}}})}
-						errMsg="Invalid input"
-						throwErr={inputState.descriptionInput.trhowErr}
-					/>
-				</div>
+				<div></div>
+				// <div className="contact-us-card__inputs-wrapper">
+				// 	<Input
+				// 		type="text"
+				// 		placeholder="Full Name"
+				// 		value={inputState.fullNameInput.val}
+				// 		onChange={(e) => inputDispatch({type: "updateState", payload: {fullNameInput: {...inputState.fullNameInput, val: e.target.value}}})}
+				// 		errMsg="Invalid input"
+				// 		throwErr={inputState.fullNameInput.trhowErr}
+				// 	/>
+				// 	<Input
+				// 		type="email"
+				// 		placeholder="Email"
+				// 		value={inputState.emailInput.val}
+				// 		onChange={(e) => inputDispatch({type: "updateState", payload: {emailInput: {...inputState.emailInput, val: e.target.value}}})}
+				// 		errMsg="Invalid Email"
+				// 		throwErr={inputState.emailInput.trhowErr}
+				// 	/>
+				// 	<Input
+				// 		type="text"
+				// 		placeholder="Description"
+				// 		value={inputState.descriptionInput.val}
+				// 		onChange={(e) => inputDispatch({type: "updateState", payload: {descriptionInput: {...inputState.descriptionInput, val: e.target.value}}})}
+				// 		errMsg="Invalid input"
+				// 		throwErr={inputState.descriptionInput.trhowErr}
+				// 	/>
+				// </div>
 			)}
 			<button className="primary-button contact-us-card__button" onClick={handleSend}>
 				{buttonText}

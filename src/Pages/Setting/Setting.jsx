@@ -6,7 +6,6 @@ import {useRemoveUserMutation} from "../../Redux/Services/userApi";
 
 import {ReactComponent as LogoutIcon} from "../../Assets/icons/log_out_icon.svg";
 
-import useCheckToken from "../../Hooks/useCheckToken";
 
 import SettingInputs from "./SettingInputs";
 import CreditCard from "../../Components/CreditCard/CreditCard";
@@ -15,7 +14,6 @@ import EditAvatar from "../../Components/EditAvatar";
 
 export default function Setting() {
 	const navigate = useNavigate();
-	useCheckToken();
 	const [removeUser] = useRemoveUserMutation();
 
 	const handleLogOut = () => {

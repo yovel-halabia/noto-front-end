@@ -6,7 +6,6 @@ import { AnimatePresence } from "framer-motion";
 
 import { userApi, useUpdateUserMutation } from "../../Redux/Services/userApi";
 
-import useCheckToken from "../../Hooks/useCheckToken";
 
 import ProgressBar from "./ProgressBar";
 import SubTotal from "./SubTotal";
@@ -17,13 +16,12 @@ import PaymentStep from "./PaymentStep";
 import ErrAlert from "../../Components/ErrAlert";
 
 export default function Payment() {
-	const { hash } = useLocation();
+	const {hash} = useLocation();
 	const navigate = useNavigate();
 	const [errMssg, setErrMssg] = useState("");
 	const [stepCheck, setStepCheck] = useState({});
-	const { data } = userApi.endpoints.getUser.useQueryState();
+	const {data} = userApi.endpoints.getUser.useQueryState();
 	const [updateUser] = useUpdateUserMutation();
-	useCheckToken();
 
 	useEffect(() => {
 		if (hash === "#pay" && (!stepCheck.cart || !stepCheck.address)) navigate("#cart");
@@ -36,20 +34,18 @@ export default function Payment() {
 		switch (hash) {
 			case "#cart":
 				if (data?.cartItems?.items?.length > 0) {
-					setStepCheck({ ...stepCheck, cart: true });
+					setStepCheck({...stepCheck, cart: true});
 					navigate("#address");
 				} else setErrMssg("your cart is empty");
 				break;
 			case "#address":
 				if (data?.address?.some((address) => address.isDefault)) {
-					setStepCheck({ ...stepCheck, address: true });
+					setStepCheck({...stepCheck, address: true});
 					navigate("#pay");
 				} else setErrMssg("you must to choose address");
 				break;
 			case "#pay":
-				data?.cards?.some((card) => card.isDefault)
-					? handlePay()
-					: setErrMssg("you must to choose credit card to pay");
+				data?.cards?.some((card) => card.isDefault) ? handlePay() : setErrMssg("you must to choose credit card to pay");
 				break;
 			default:
 				navigate("#cart");
@@ -68,7 +64,7 @@ export default function Payment() {
 		})
 			.unwrap()
 			.then(() => navigate("/orders"))
-			.catch(({ data }) => {
+			.catch(({data}) => {
 				if (data.authErr) {
 					navigate("/login");
 				} //else setErrMssg("something went wrong try agin later");
