@@ -21,7 +21,7 @@ To setup local environment:<br/>
 Clone the repository to your local machine<br/>
 Open the project in the IDE and run the following command in terminal:<br/>
 `npm start`<br/>
-Then go to [NOTO BE](https://github.com/yovel-halabia/noto-back-end) repo and do setup section 
+Then go to [NOTO BE](https://github.com/yovel-halabia/noto-back-end) repository and do setup section 
 
 ## Contact
 Created by [@yovel_halabia](https://www.linkedin.com/in/yovel-halabia-450a2b1b2/) - feel free to contact me!
