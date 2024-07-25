@@ -8,7 +8,7 @@ Live demo [_here_](https://noto-yovel-halabia.vercel.app/).
 - The goal of the project is to create experience in building a system that includes front-end and back-end functionality.
 
 ## Technologies Used
-![Skills](https://skills.thijs.gg/icons?i=nodejs,react,express,mongodb,redux&perline=5)
+![Skills](https://skillicons.dev/icons?i=js,html,css,nodejs)
 
 ## Features
 - Authentication
